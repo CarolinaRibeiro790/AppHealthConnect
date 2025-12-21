@@ -21,7 +21,7 @@ export function HomeHeader({ data, icon, isLeft = false }: Props) {
         <View style={styles.container}>
             <Text style={styles.texto}>{data.text}</Text>
             {icon && (
-                <MaterialIcons name={icon.name} size={32} color={icon.color} />
+                <MaterialIcons name={icon?.name} size={32} color={icon.color} />
             )}
         </View>
     )

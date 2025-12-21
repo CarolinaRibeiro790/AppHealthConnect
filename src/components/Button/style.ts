@@ -15,6 +15,6 @@ export const styles = StyleSheet.create({
     title: {
         fontFamily: fontFamily.medium,
         fontSize: 16,
-        color: colors.white[100]
+        color: colors.white
     }
 })

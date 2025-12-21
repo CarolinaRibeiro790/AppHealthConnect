@@ -25,6 +25,6 @@ export const styles = StyleSheet.create({
         shadowOffset: { width: 1, height: 1 }, // Deslocamento da sombra no iOS
         shadowOpacity: 0.3, // Opacidade da sombra no iOS
         shadowRadius: 3,
-        backgroundColor: colors.white[100]
+        backgroundColor: colors.white
     }
 })

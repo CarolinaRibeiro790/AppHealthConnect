@@ -20,10 +20,10 @@ export const styles = StyleSheet.create({
         color: colors.blue[200]
     },
     viewInput: {
-        backgroundColor: colors.white[200],
+        backgroundColor: colors.white,
         marginTop: -180,
         width: width * 1,
-        height: height * 0.55,
+        height: height * 0.62,
         borderTopEndRadius: 30,
         borderTopStartRadius: 30,
         paddingVertical: height * 0.035,

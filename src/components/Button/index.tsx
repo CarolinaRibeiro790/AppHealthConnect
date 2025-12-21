@@ -6,9 +6,10 @@ import { colors } from "@/theme";
 type Props = TouchableOpacityProps & {
     title: string,
     isProcessing?: boolean
+    backgroundColor?: string
 }
 
-export function Button({ title, isProcessing = false, ...rest }: Props) {
+export function Button({ title, isProcessing = false, backgroundColor = colors.blue[200], style,  ...rest }: Props) {
     return (
         <TouchableOpacity
             style={styles.container}
