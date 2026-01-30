@@ -6,8 +6,8 @@ const { width, height } = Dimensions.get('window');
 export const styles = StyleSheet.create({
     container: {
         backgroundColor: colors.blue[200],
-        height: height * 0.045,
-        width: width * 0.32,
+        height: height * 0.05,
+        width: width * 0.28,
         borderRadius: 50,
         alignItems: "center",
         justifyContent: "center"
@@ -15,6 +15,6 @@ export const styles = StyleSheet.create({
     title: {
         fontFamily: fontFamily.medium,
         fontSize: 16,
-        color: colors.white[100]
+        color: colors.white
     }
 })

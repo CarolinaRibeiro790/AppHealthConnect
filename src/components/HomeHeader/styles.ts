@@ -6,7 +6,7 @@ const { width, height } = Dimensions.get('window');
 export const styles = StyleSheet.create({
     container: {
         width: width * 1,
-        height: height * 0.08,
+        height: height * 0.07,
         paddingHorizontal: 24,
         gap: 24,
         backgroundColor: colors.blue[200],
@@ -16,12 +16,12 @@ export const styles = StyleSheet.create({
     },
     label: {
         fontSize: 12,
-        color: colors.white[100],
+        color: colors.white,
         fontFamily: fontFamily.regular
     },
     texto: {
-        fontSize: 24,
-        color: colors.white[100],
+        fontSize: 20,
+        color: colors.white,
         fontFamily: fontFamily.medium
     },
     summary: {
