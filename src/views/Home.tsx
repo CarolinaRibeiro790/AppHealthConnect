@@ -1,14 +1,16 @@
 import { FlatList, Text, View, ListRenderItem, ScrollView } from "react-native";
-import { HomeHeader } from "@/components/HomeHeader";
+
 import { colors } from "@/theme";
 import { styles } from "@/style/stylesHome";
+
+import { HomeHeader } from "@/components/HomeHeader";
 import { CardConsultas } from "@/components/CardConsultas";
 import { ButtonServicos } from "@/components/ButtonServicos";
+
 import { ServiceDTO } from "@/dto/ServiceDTO";
 import { ConsultaDTO } from "@/dto/ConsultaDTO";
 
 const Home = () => {
-
     const dados = {
         text: "Olá, Carol",
     }
@@ -26,38 +28,37 @@ const Home = () => {
         {
             id: "1",
             service: "Iridologia",
-            date: "24/12/2025",
+            date: "30/01/2026",
             hour: "13:30 - 14:30",
             doctor: "Dra. Tais Prates",
         },
         {
             id: "2",
             service: "Acupuntura",
-            date: "23/12/2025",
+            date: "04/02/2026",
             hour: "09:00 - 10:00",
             doctor: "Dr. Tais Prates",
         },
-        {
-            id: "3",
-            service: "Drenagem",
-            date: "28/12/2025",
-            hour: "14:30 - 15:30",
-            doctor: "Dra. Tais Prates",
-        },
-        {
-            id: "4",
-            service: "Massagem Terapeutica",
-            date: "20/12/2025",
-            hour: "14:30 - 15:30",
-            doctor: "Dra. Tais Prates",
-        },
+        // {
+        //     id: "3",
+        //     service: "Drenagem",
+        //     date: "28/12/2025",
+        //     hour: "14:30 - 15:30",
+        //     doctor: "Dra. Tais Prates",
+        // },
+        // {
+        //     id: "4",
+        //     service: "Massagem Terapeutica",
+        //     date: "20/12/2025",
+        //     hour: "14:30 - 15:30",
+        //     doctor: "Dra. Tais Prates",
+        // },
     ]
-
-
 
     const servicosItens: ListRenderItem<ServiceDTO> = ({ item }) => {
         return <ButtonServicos item={item} />
     }
+
     return (
         <View style={styles.container}>
             <HomeHeader

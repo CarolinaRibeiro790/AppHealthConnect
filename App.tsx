@@ -8,6 +8,8 @@ import { useFonts, Inter_400Regular, Inter_500Medium, Inter_700Bold } from "@exp
 import { colors } from './src/theme/colors';
 import { MainTabNavigator } from '@/routes/Navigation';
 import Dados from '@/views/Dados';
+import Servicos from '@/views/Servicos';
+import Notificacao from '@/views/Notificacao';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -30,6 +32,8 @@ export default function App() {
                 <Stack.Navigator screenOptions={{ headerShown: false }}>
                     <Stack.Screen name="Login" component={Login} />
                     <Stack.Screen name="Dados" component={Dados} />
+                    <Stack.Screen name="Servicos" component={Servicos} />
+                    <Stack.Screen name="Notificacao" component={Notificacao} />
                     <Stack.Screen name="Home" component={MainTabNavigator} />
                 </Stack.Navigator>
             </View>

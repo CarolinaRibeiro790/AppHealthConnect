@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
         maxWidth: width * 0.7
     },
     txt: {
-        fontSize: 20,
+        fontSize: 18,
         fontFamily: fontFamily.bold,
         color: colors.blue[200]
     },
@@ -49,6 +49,13 @@ export const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         gap: 4
+    },
+    viewCalendaryDate: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 4,
+        marginRight: width * 0.05
     },
     txtComum: {
         fontFamily: fontFamily.regular,

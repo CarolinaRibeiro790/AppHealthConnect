@@ -28,7 +28,7 @@ export function CardConsultas({ data }: CardConsultasProps) {
                 <View style={styles.servicoItem}>
                     <Text style={styles.txt} numberOfLines={1}> {data.service}</Text>
                 </View>
-                <View style={styles.viewCalendary}>
+                <View style={styles.viewCalendaryDate}>
                     <Text style={styles.txtComum}>{data.date}</Text>
                 </View>
 

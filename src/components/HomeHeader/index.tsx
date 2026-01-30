@@ -1,4 +1,5 @@
-import { Text, View, ColorValue } from 'react-native';
+import { Text, View, ColorValue, TouchableOpacity } from 'react-native';
+import { useNavigation } from "@react-navigation/native"
 import { MaterialIcons } from "@expo/vector-icons"
 import { styles } from "./styles";
 
@@ -17,11 +18,14 @@ type Props = {
 }
 
 export function HomeHeader({ data, icon, isLeft = false }: Props) {
+    const navigation = useNavigation<any>()
     return (
         <View style={styles.container}>
             <Text style={styles.texto}>{data.text}</Text>
             {icon && (
-                <MaterialIcons name={icon?.name} size={32} color={icon.color} />
+                <TouchableOpacity onPress={() => navigation.navigate('Notificacao')}>
+                    <MaterialIcons name={icon?.name} size={32} color={icon.color} />
+                </TouchableOpacity>
             )}
         </View>
     )

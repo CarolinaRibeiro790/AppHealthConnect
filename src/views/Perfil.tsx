@@ -26,7 +26,7 @@ const Perfil = () => {
         id: "1",
         name: "Ana Carolina Gonçalves Ribeiro",
         dataNascimento: "13/03/1999",
-        telephone: "(19) 99957-2295"
+        telephone: "(19) 99922-2222"
     }
 
     type ItemTabelaProps = {

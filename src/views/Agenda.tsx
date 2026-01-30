@@ -36,30 +36,16 @@ const Agenda = () => {
         {
             id: "1",
             service: "Iridologia",
-            date: "24/12/2025",
+            date: "30/01/2026",
             hour: "13:30 - 14:30",
             doctor: "Dra. Tais Prates",
         },
         {
             id: "2",
             service: "Acupuntura",
-            date: "23/12/2025",
+            date: "04/02/2026",
             hour: "09:00 - 10:00",
             doctor: "Dr. Tais Prates",
-        },
-        {
-            id: "3",
-            service: "Drenagem",
-            date: "28/12/2025",
-            hour: "14:30 - 15:30",
-            doctor: "Dra. Tais Prates",
-        },
-        {
-            id: "4",
-            service: "Massagem Terapeutica",
-            date: "20/12/2025",
-            hour: "14:30 - 15:30",
-            doctor: "Dra. Tais Prates",
         },
     ]
 

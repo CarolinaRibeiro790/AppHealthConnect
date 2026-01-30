@@ -4,5 +4,6 @@ export type ConsultaDTO = {
     date: string
     hour: string
     doctor: string,
-    
+    visualizado?: boolean | undefined
+
 }
