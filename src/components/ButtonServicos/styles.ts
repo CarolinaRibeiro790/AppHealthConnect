@@ -16,6 +16,7 @@ export const styles = StyleSheet.create({
         shadowOpacity: 0.3, // Opacidade da sombra no iOS
         shadowRadius: 3,
         alignItems: 'center',
+        justifyContent: 'center',
         paddingVertical: 25,
         marginBottom: 5,
         paddingHorizontal: 5

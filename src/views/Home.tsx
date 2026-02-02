@@ -1,19 +1,45 @@
-import { FlatList, Text, View, ListRenderItem, ScrollView } from "react-native";
+import { useEffect, useState, useCallback } from "react";
+import { FlatList, Text, View, ListRenderItem, ScrollView, RefreshControl } from "react-native";
+import { useNavigation } from '@react-navigation/native';
+import { MaterialIcons } from "@expo/vector-icons";
 
 import { colors } from "@/theme";
 import { styles } from "@/style/stylesHome";
 
-import { HomeHeader } from "@/components/HomeHeader";
 import { CardConsultas } from "@/components/CardConsultas";
 import { ButtonServicos } from "@/components/ButtonServicos";
 
 import { ServiceDTO } from "@/dto/ServiceDTO";
 import { ConsultaDTO } from "@/dto/ConsultaDTO";
+import { Loading } from "@/components/Loading";
+import { HomeHeader } from "@/components/HomeHeader";
 
 const Home = () => {
-    const dados = {
-        text: "Olá, Carol",
-    }
+    const [isLoading, setIsLoading] = useState(false);
+    const navigation = useNavigation();
+    const [refreshing, setRefreshing] = useState(false);
+
+    useEffect(() => {
+        navigation.setOptions({
+            title: `Olá, Carol`,
+            headerStyle: {
+                backgroundColor: colors.blue[200],
+            },
+            headerTintColor: 'white',
+            headerRight: () => (
+                <MaterialIcons
+                    name="notifications"
+                    size={28}
+                    color="white"
+                    style={{ marginRight: 16 }}
+                    onPress={() => {
+                        console.log("Clicou no ícone");
+                    }}
+                />
+            ),
+        });
+    }, [navigation]);
+
 
     const servicos = [
         { id: 1, name: "Iridologia", icon: "visibility" },
@@ -39,34 +65,42 @@ const Home = () => {
             hour: "09:00 - 10:00",
             doctor: "Dr. Tais Prates",
         },
-        // {
-        //     id: "3",
-        //     service: "Drenagem",
-        //     date: "28/12/2025",
-        //     hour: "14:30 - 15:30",
-        //     doctor: "Dra. Tais Prates",
-        // },
-        // {
-        //     id: "4",
-        //     service: "Massagem Terapeutica",
-        //     date: "20/12/2025",
-        //     hour: "14:30 - 15:30",
-        //     doctor: "Dra. Tais Prates",
-        // },
     ]
+
+    const parseDateBR = (dateStr: string) => {
+        const [day, month, year] = dateStr.split("/").map(Number);
+        return new Date(year, month - 1, day);
+    };
+
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
+
+    const consultasFiltradas = consultas.filter((consulta) => {
+        const dataConsulta = parseDateBR(consulta.date);
+        return dataConsulta >= hoje;
+    });
 
     const servicosItens: ListRenderItem<ServiceDTO> = ({ item }) => {
         return <ButtonServicos item={item} />
     }
 
+    const onRefresh = useCallback(async () => {
+        setRefreshing(true);
+        // await Promise.all([
+
+        // ]);
+        setRefreshing(false);
+    }, []);
+
+
+
+    if (isLoading) {
+        return <Loading />
+    }
+
     return (
         <View style={styles.container}>
-            <HomeHeader
-                data={dados}
-                icon={{
-                    name: "notifications",
-                    color: colors.white,
-                }} />
+            <HomeHeader title="Olá, Carol" icon="notifications" />
 
             <View style={styles.viewServices}>
                 <Text style={styles.titulo}>Serviços</Text>
@@ -89,11 +123,20 @@ const Home = () => {
                 </View>
             </View>
 
-            <ScrollView>
+            <ScrollView
+                refreshControl={
+                    <RefreshControl
+                        refreshing={refreshing}
+                        onRefresh={onRefresh}
+                        tintColor={colors.blue[200]}
+                        colors={[colors.blue[200]]}
+                        progressBackgroundColor="#FFFFFF"
+                    />
+                }>
                 <View style={styles.viewServices}>
                     <Text style={styles.titulo}>Meus agendamentos</Text>
                     <FlatList
-                        data={consultas}
+                        data={consultasFiltradas}
                         keyExtractor={(item) => item.id}
                         renderItem={({ item }) => (
                             <CardConsultas data={item} />
@@ -107,6 +150,8 @@ const Home = () => {
                     />
                 </View>
             </ScrollView>
+
+
         </View>
     )
 }

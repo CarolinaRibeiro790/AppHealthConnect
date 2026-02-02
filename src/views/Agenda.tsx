@@ -1,20 +1,17 @@
 import { useState, useCallback } from "react"
 import { View, Text, ScrollView } from "react-native"
-
+import { isDateInPast } from "@/utils/dateUtils"
+import { colors, fontFamily } from "@/theme"
+import { formatDateInTimeZone, convertToAPIDateFormat } from "@/utils/dateUtils"
+import { ConsultaDTO } from "@/dto/ConsultaDTO"
+import { ServiceDTO } from "@/dto/ServiceDTO"
+import { HourDTO } from "@/dto/HourDTO"
 import { Calendario } from "@/components/Calendario"
 import { CardConsultas } from "@/components/CardConsultas"
 import { HomeHeader } from "@/components/HomeHeader"
-
-import { ConsultaDTO } from "@/dto/ConsultaDTO"
-import { formatDateInTimeZone, convertToAPIDateFormat } from "@/utils/dateUtils"
-import { colors, fontFamily } from "@/theme"
 import { Button } from "@/components/Button"
 import { ModalAgendamentos } from "@/components/ModalAgendamentos"
-import { ServiceDTO } from "@/dto/ServiceDTO"
-import { HourDTO } from "@/dto/HourDTO"
-import { isDateInPast } from "@/utils/dateUtils"
 import { Loading } from "@/components/Loading"
-
 
 const Agenda = () => {
     const [modalAgenda, setModalAgenda] = useState(false);
@@ -26,11 +23,6 @@ const Agenda = () => {
     const [selectedDate, setSelectedDate] = useState(
         formatDateInTimeZone(new Date())
     )
-
-    console.log("isPastDate", isPastDate)
-    const headerData = {
-        text: "Agenda",
-    }
 
     const consultas: ConsultaDTO[] = [
         {
@@ -102,11 +94,9 @@ const Agenda = () => {
         return <Loading />
     }
 
-
-
     return (
         <View style={{ flex: 1 }}>
-            <HomeHeader data={headerData} />
+            <HomeHeader title="Agenda" />
 
             <ModalAgendamentos
                 visible={modalAgenda}

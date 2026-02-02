@@ -1,11 +1,24 @@
-import { Image, Text, View } from "react-native";
+import { useState } from "react";
+import { Image, Text, View, TouchableOpacity } from "react-native";
 import { useNavigation } from '@react-navigation/native';
-import { styles } from "@/style/stylesLogin";
+import { MaterialIcons } from "@expo/vector-icons";
+
 import { Input } from "@/components/Input";
 import { Button } from "@/components/Button";
 
+
+import { colors } from "@/theme";
+import { styles } from "@/style/stylesLogin";
+
 const Login = () => {
     const navigation = useNavigation();
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
+    const [passwordVisibility, setPasswordVisibility] = useState(true);
+
+    const togglePasswordVisibility = () => {
+        setPasswordVisibility(!passwordVisibility);
+    };
     return (
         <View style={styles.container}>
             <View>
@@ -22,11 +35,36 @@ const Login = () => {
                         <Input
                             label=""
                             placeholder="Digite seu e-mail"
+                            value={email}
+                            onChangeText={setEmail}
+
                         />
-                        <Input
-                            label=""
-                            placeholder="Digite sua senha"
-                        />
+                        <View style={{ position: 'relative' }}>
+                            <Input
+                                label=""
+                                placeholder="Digite sua senha"
+                                value={senha}
+                                onChangeText={setSenha}
+                                secureTextEntry={passwordVisibility}
+                                returnKeyType="done"
+                            />
+
+                            <TouchableOpacity
+                                onPress={togglePasswordVisibility}
+                                style={{
+                                    position: 'absolute',
+                                    right: 12,
+                                    top: '50%',
+                                }}
+                            >
+                                <MaterialIcons
+                                    name={passwordVisibility ? 'visibility-off' : 'visibility'}
+                                    size={24}
+                                    color={colors.gray[200]}
+                                />
+                            </TouchableOpacity>
+                        </View>
+
                     </View>
 
                     <Button title="ACESSAR" onPress={() => navigation.navigate("Home")} />
