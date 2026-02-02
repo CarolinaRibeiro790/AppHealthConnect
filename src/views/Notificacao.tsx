@@ -1,10 +1,5 @@
 import React, { useMemo, useCallback, memo } from 'react';
-import {
-    View,
-    Text,
-    FlatList,
-    TouchableOpacity,
-} from 'react-native';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { styles } from '@/style/stylesNotificacao';
 import { colors } from '@/theme';
 import { ConsultaDTO } from '@/dto/ConsultaDTO';

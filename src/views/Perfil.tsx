@@ -1,27 +1,26 @@
 import { memo } from 'react';
-import { View, TouchableOpacity, Text, FlatList } from "react-native";
+import { View, TouchableOpacity, Text, FlatList, Linking } from "react-native";
+import { useNavigation } from '@react-navigation/native';
+import { MaterialIcons } from '@expo/vector-icons';
+
+import { UserDTO } from "@/dto/UserDTO";
+
 import { HomeHeader } from "@/components/HomeHeader";
 import { CardPerfil } from "@/components/CardPerfil";
-import { UserDTO } from "@/dto/UserDTO";
-import { MaterialIcons } from '@expo/vector-icons';
 import { Separator } from '@/components/Separator';
-import { colors } from '@/theme';
 
+import { colors } from '@/theme';
 import { styles } from '@/style/stylesPerfil';
 
 const outros = [
-    { id: 1, iconName: 'lock-reset', title: 'Alterar senha', iconSeta: 'chevron-right', tela: '' },
+    { id: 1, iconName: 'lock-reset', title: 'Alterar senha', iconSeta: 'chevron-right', tela: 'AlterarSenha' },
     // { id: 2, iconName: 'system-update', title: 'Atualizar', iconSeta: 'chevron-right', tela: '' },
-    { id: 3, iconName: 'info-outline', title: 'Sobre nós', iconSeta: 'chevron-right', link: '' },
-    { id: 4, iconName: 'logout', title: 'Sair', iconSeta: 'chevron-right', tela: '' },
+    { id: 3, iconName: 'info-outline', title: 'Sobre nós', iconSeta: 'chevron-right', link: 'localhost:3333' },
+    { id: 4, iconName: 'logout', title: 'Sair', iconSeta: 'chevron-right' },
 ]
 
 const Perfil = () => {
-    const dados = {
-        text: "Perfil"
-    }
-
-
+    const navigation = useNavigation();
     const dadosUser: UserDTO = {
         id: "1",
         name: "Ana Carolina Gonçalves Ribeiro",
@@ -38,10 +37,24 @@ const Perfil = () => {
         link?: string
     }
 
+    const openLink = (url) => {
+        Linking.openURL(url).catch((err) => console.error('Erro ao abrir link:', err));
+    };
+
+
 
     const ItemTabela = memo(
         ({ iconName, title, iconSeta, tela, link }: ItemTabelaProps) => (
-            <TouchableOpacity style={styles.vantagens}>
+            <TouchableOpacity style={styles.vantagens}
+                onPress={() => {
+                    if (title === 'Sair') {
+                        // handleLogoutLocal();
+                    } else if (link) {
+                        // openLink(link);
+                    } else {
+                        navigation.navigate(tela);
+                    }
+                }}>
                 <View style={styles.colunaEsquerda}>
                     <MaterialIcons name={iconName} style={styles.iconeServico} />
                 </View>
@@ -60,7 +73,7 @@ const Perfil = () => {
 
     return (
         <View >
-            <HomeHeader data={dados} />
+            <HomeHeader title="Perfil" />
             <View style={{ paddingVertical: 25, alignItems: "center" }}>
                 <CardPerfil data={dadosUser} />
             </View>

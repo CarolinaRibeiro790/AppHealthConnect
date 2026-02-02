@@ -1,32 +1,30 @@
-import { Text, View, ColorValue, TouchableOpacity } from 'react-native';
-import { useNavigation } from "@react-navigation/native"
-import { MaterialIcons } from "@expo/vector-icons"
-import { styles } from "./styles";
+import { useEffect } from "react";
+import { useNavigation } from "@react-navigation/native";
+import { MaterialIcons } from "@expo/vector-icons";
+import { colors } from "@/theme";
 
-export type HomeHeaderProps = {
-    text: string,
-    isLeft?: boolean
-}
+export function HomeHeader({ title, icon, isLeft = false }: Props) {
+    const navigation = useNavigation<any>();
 
-type Props = {
-    data: HomeHeaderProps,
-    icon?: {
-        name: keyof typeof MaterialIcons.glyphMap,
-        color: ColorValue
-    }
-    isLeft?: boolean
-}
+    useEffect(() => {
+        navigation.setOptions({
+            title,
+            headerStyle: {
+                backgroundColor: colors.blue[200],
+            },
+            headerTintColor: "white",
+            headerRight: () =>
+                icon ? (
+                    <MaterialIcons
+                        name={icon}
+                        size={28}
+                        color="white"
+                        style={{ marginRight: 16 }}
+                        onPress={() => navigation.navigate("Notificacao")}
+                    />
+                ) : null,
+        });
+    }, [navigation, title, icon]);
 
-export function HomeHeader({ data, icon, isLeft = false }: Props) {
-    const navigation = useNavigation<any>()
-    return (
-        <View style={styles.container}>
-            <Text style={styles.texto}>{data.text}</Text>
-            {icon && (
-                <TouchableOpacity onPress={() => navigation.navigate('Notificacao')}>
-                    <MaterialIcons name={icon?.name} size={32} color={icon.color} />
-                </TouchableOpacity>
-            )}
-        </View>
-    )
+    return null;
 }

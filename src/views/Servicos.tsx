@@ -7,10 +7,6 @@ export default function Servicos() {
     const route = useRoute<any>()
     const { id } = route.params;
 
-    const dados = {
-        text: "Saiba mais"
-    }
-
     const descricao = [
         { id: 1, name: "Iridologia", descricao: "A iridologia é uma técnica de avaliação da saúde por meio da observação da íris (parte colorida dos olhos).", objetivo: "Identificar desequilíbrios no organismo e tendências do corpo.", beneficio: "Ajuda a prevenir problemas, auxilia no autoconhecimento e contribui para um tratamento mais personalizado." },
         { id: 2, name: "Massagem Terapêutica", descricao: "A massagem terapêutica utiliza movimentos específicos para aliviar tensões musculares e dores no corpo.", objetivo: "Promover relaxamento e bem-estar físico.", beneficio: "Reduz dores, melhora a circulação, diminui o estresse e proporciona sensação de alívio e conforto." },
@@ -31,7 +27,7 @@ export default function Servicos() {
     }
     return (
         <View style={styles.container}>
-            <HomeHeader data={dados}/>
+            <HomeHeader title="Saiba mais" />
             <View style={styles.conteudo}>
                 <View>
                     <Text style={styles.titulo}>{servicoSelecionado.name}</Text>

@@ -40,13 +40,13 @@ export function MainTabNavigator() {
                 tabBarStyle: styles.tabBarStyle,
                 tabBarActiveTintColor: colors.blue[200],
                 tabBarInactiveTintColor: "gray",
-                headerShown: false,
             })}
         >
-            <Tab.Screen name="Home" component={Home} />
-            <Tab.Screen name="Agenda" component={Agenda} />
-            <Tab.Screen name="Perfil" component={Perfil} />
-            <Tab.Screen name="Chat" component={Chat} />
+            <Tab.Screen name="Home" component={Home} options={{ tabBarLabel: 'Home' }} />
+            <Tab.Screen name="Agenda" component={Agenda} options={{ tabBarLabel: 'Agenda' }} />
+            <Tab.Screen name="Chat" component={Chat} options={{ tabBarLabel: 'Chat' }} />
+            <Tab.Screen name="Perfil" component={Perfil} options={{ tabBarLabel: 'Perfil' }} />
+
         </Tab.Navigator>
     )
 }
@@ -54,11 +54,11 @@ export default function Navigation() {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
-            <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
-            <Stack.Screen name="Dados" component={Dados} />
-            <Stack.Screen name="Servicos" component={Servicos} />
+            <Stack.Screen name="Home" component={MainTabNavigator} />
+            <Stack.Screen name="Dados" component={Dados} options={{ headerShown: true }} />
+            <Stack.Screen name="Servicos" component={Servicos} options={{ headerShown: true }} />
             <Stack.Screen name="Notificacao" component={Notificacao} />
-            <Stack.Screen name="AlterarSenha" component={AlterarSenha} />
+            <Stack.Screen name="AlterarSenha" component={AlterarSenha} options={{ headerShown: true }} />
         </Stack.Navigator>
     );
 }
